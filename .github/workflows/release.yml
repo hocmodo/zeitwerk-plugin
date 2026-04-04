@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build plugin.zip
+        run: |
+          zip -r plugin.zip . \
+            --exclude "*.DS_Store" \
+            --exclude "plugin.zip" \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "Makefile" \
+            --exclude ".claude/*"
+
+      - name: Upload plugin.zip to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: plugin.zip
