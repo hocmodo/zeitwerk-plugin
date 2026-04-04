@@ -1,3 +1,9 @@
+---
+name: projects-clients
+description: Manage customers and projects in Zeitwerk. Use when adding, viewing, or updating a customer or project, checking project activity or earnings, or setting up a new client.
+user-invocable: false
+---
+
 # Projects & Customers Skill
 
 ## Purpose

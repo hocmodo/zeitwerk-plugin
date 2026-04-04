@@ -1,3 +1,9 @@
+---
+name: time-logging
+description: Log, view, edit, and import time entries in Zeitwerk. Use when logging time, recording work hours, importing xlsx/xls/csv timesheets, asking what was logged today or this week, or editing/deleting a time entry.
+user-invocable: false
+---
+
 # Time Logging Skill
 
 ## Purpose

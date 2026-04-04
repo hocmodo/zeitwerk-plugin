@@ -1,3 +1,9 @@
+---
+name: reporting
+description: Generate timesheet and earnings reports from Zeitwerk. Use when the user asks for a summary, report, or breakdown of time worked or earned, or mentions a time period with a reporting intent.
+user-invocable: false
+---
+
 # Reporting Skill
 
 ## Purpose

@@ -1,3 +1,9 @@
+---
+name: invoicing
+description: Create, track, and manage invoices in Zeitwerk. Use when creating invoices, checking what is unpaid or overdue, marking invoices as paid, or downloading invoice PDFs.
+user-invocable: false
+---
+
 # Invoicing Skill
 
 ## Purpose
