@@ -16,6 +16,8 @@ Create, track, and manage invoices based on logged time in Zeitwerk.
 
 ## IMPORTANT: How to access Zeitwerk data
 You have access to the Zeitwerk MCP server which provides the following tools:
+- `start_timer` — start the in-app timer for a project (required: project_id; optional: description)
+- `stop_timer` — stop the running timer and save the elapsed time as a time entry
 - `get_status` — dashboard summary
 - `get_customers` — list all customers
 - `create_customer` — create a new customer (required: name; optional: contact, address, tax_id)

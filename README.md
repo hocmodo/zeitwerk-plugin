@@ -1,23 +1,24 @@
-# Zeitwerk Plugin for Claude Cowork
+# Zeitwerk Plugin for Claude Desktop
 
-A Claude Cowork plugin for [Zeitwerk](https://apps.apple.com/nl/app/zeitwerk/id6758670741?l=en-GB&mt=12) — timesheet management for freelancers. Log time, manage projects and clients, generate reports, and track invoices, all from natural language in Cowork.
+A Claude Desktop plugin for [Zeitwerk](http://www.hocmodo.nl) — timesheet management for freelancers. Control timers, log time, manage projects and clients, generate reports, and track invoices, all from natural language.
 
 ## Requirements
 
-- [Zeitwerk](https://apps.apple.com/nl/app/zeitwerk/id6758670741?l=en-GB&mt=12) desktop app (running locally)
-- [Zeitwerk MCP Server](https://github.com/hocmodo/zeitwerk-mcp-server) extension installed in Claude Cowork
+- [Zeitwerk](http://www.hocmodo.nl) desktop app (running locally on `127.0.0.1:27432`)
+- [Zeitwerk MCP Server](https://github.com/hocmodo/zeitwerk-mcp-server) extension installed in Claude Desktop
 
 ## Installation
 
-1. Install the [Zeitwerk MCP Server](https://github.com/hocmodo/zeitwerk-mcp-server) extension and configure your API token.
-2. Install this plugin in Claude Cowork.
-3. Start Zeitwerk and open a Cowork session.
+1. Install the Zeitwerk MCP Server extension from **Settings → Extensions → Browse → search "Zeitwerk"** and configure your API token.
+2. Install this plugin in Claude Desktop.
+3. Start Zeitwerk and open a conversation.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/zeitwerk:log` | Log a time entry |
+| `/zeitwerk:timer` | Start or stop the in-app timer |
+| `/zeitwerk:log` | Log a time entry manually |
 | `/zeitwerk:report` | Generate a timesheet or earnings report |
 | `/zeitwerk:invoice` | Create and manage invoices |
 | `/zeitwerk:status` | Quick dashboard snapshot |
@@ -25,6 +26,9 @@ A Claude Cowork plugin for [Zeitwerk](https://apps.apple.com/nl/app/zeitwerk/id6
 ### Examples
 
 ```
+/zeitwerk:timer start Website Redesign — dark mode
+/zeitwerk:timer stop
+
 /zeitwerk:log 2h on Website Redesign — fixed nav bug
 /zeitwerk:log 9am-11:30 on Mobile App — sprint planning
 
@@ -37,6 +41,9 @@ A Claude Cowork plugin for [Zeitwerk](https://apps.apple.com/nl/app/zeitwerk/id6
 /zeitwerk:status
 
 Natural language:
+
+Start the timer on the Acme Corp Website Redesign project — working on dark mode
+Stop the timer
 
 Can you import all excel timesheets in this directory into Zeitwerk?
 
