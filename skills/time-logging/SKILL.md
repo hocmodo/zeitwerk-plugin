@@ -40,9 +40,11 @@ The available tools are:
 - `create_time_entry` — log new entry (required: project_id, hours, date; optional: description)
 - `update_time_entry` — edit entry (required: id)
 - `delete_time_entry` — soft delete (required: id)
-- `get_invoices` — list invoices (optional status filter)
+- `get_invoices` — list invoices (optional: status 'unpaid'/'paid'/'overdue', customer_id, from, to)
+- `get_invoice` — one invoice with its line items (required: id)
 - `create_invoice` — create invoice with line items
-- `update_invoice` — update invoice (e.g. mark paid)
+- `update_invoice` — mark paid (optional paid_date) or unpaid
+- `delete_invoice` — delete an invoice (required: id; confirm first)
 - `get_invoice_pdf` — download invoice as PDF (required: id)
 - `import_time_entries` — import entries from .xlsx/.xls/.csv file (required: file_path, project_id)
 

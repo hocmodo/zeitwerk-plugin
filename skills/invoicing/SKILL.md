@@ -29,9 +29,11 @@ You have access to the Zeitwerk MCP server which provides the following tools:
 - `create_time_entry` — log new entry (required: project_id, hours, date; optional: description)
 - `update_time_entry` — edit entry (required: id)
 - `delete_time_entry` — soft delete (required: id)
-- `get_invoices` — list invoices (optional: status filter: 'unpaid' or 'paid')
-- `create_invoice` — create invoice with line items (required: customer_id, invoice_date)
-- `update_invoice` — update invoice, e.g. mark paid (required: id, status)
+- `get_invoices` — list invoices (optional: status 'unpaid', 'paid' or 'overdue'; customer_id; from/to invoice date as YYYY-MM-DD). Each has `subject`, `paid_date` and an `overdue` flag
+- `get_invoice` — one invoice with its line items (required: id)
+- `create_invoice` — create invoice with line items (required: customer_id, invoice_date; optional: subject, and a description per line item)
+- `update_invoice` — mark paid or unpaid (required: id, status; optional: paid_date as YYYY-MM-DD, default today)
+- `delete_invoice` — delete an invoice and its lines (required: id)
 - `get_invoice_pdf` — download invoice as PDF (required: id)
 - `import_time_entries` — import entries from .xlsx/.xls/.csv (required: file_path, project_id)
 
@@ -40,20 +42,32 @@ Always call these MCP tools directly. Never use bash, curl, or any other method.
 ## Workflows
 
 ### Check outstanding invoices
-Call `get_invoices` with status="unpaid"
-Flag any where due_date < today as overdue
+Call `get_invoices` with status="unpaid" (or status="overdue" for only the late ones)
+Use the `overdue` flag on each invoice rather than comparing dates yourself
 
 ### Create an invoice
 1. Call `get_customers` to resolve customer name to id
 2. Call `get_time_entries` for the period to find unbilled time for that customer
 3. Group by project to build line items
-4. Show draft summary table and ask user to confirm
-5. Only after confirmation: call `create_invoice` with line items
-6. Never create an invoice without user confirmation
+4. Optionally add a `description` per line (printed instead of the project name, e.g.
+   "Development, March 2026") and a `subject` (e.g. the customer's PO number)
+5. Show draft summary table and ask user to confirm
+6. Only after confirmation: call `create_invoice` with line items
+7. Never create an invoice without user confirmation
 
 ### Mark as paid
-Call `update_invoice` with id and status="paid"
-Confirm: > ✓ Invoice 2026-042 marked as paid.
+Call `update_invoice` with id and status="paid"; pass `paid_date` when the user says
+when the money arrived (otherwise today is recorded)
+Confirm: > ✓ Invoice 2026-042 marked as paid on 20 November 2026.
+
+### Fix a mistake in an invoice
+Invoices can't be edited after creation (dates, tax and lines are fixed).
+Show the user the current invoice (`get_invoice`), propose the corrected one, and only
+after confirmation call `delete_invoice` and then `create_invoice` with the corrections.
+
+### Delete an invoice
+Always confirm with the user first, naming the invoice number, customer and total.
+Then call `delete_invoice` with the id.
 
 ### Download invoice PDF
 Call `get_invoice_pdf` with the invoice id
