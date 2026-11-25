@@ -1,6 +1,6 @@
 {
   "name": "zeitwerk",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Timesheet management for freelancers. Log time, manage projects and customers, generate reports, and track invoices — all from natural language in Cowork.",
   "author": {
     "name": "Zeitwerk"

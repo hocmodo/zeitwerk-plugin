@@ -30,11 +30,11 @@ Steps:
 ```
 /zeitwerk:invoice status
 ```
-Call `get_invoices` with status="unpaid" — show all outstanding and overdue invoices.
+Call `get_invoices` with status="unpaid" — show all outstanding invoices, marking the ones with `overdue: true`.
 
 ### paid
 ```
 /zeitwerk:invoice paid 2026-042
 ```
 Call `get_invoices` to find the invoice by invoice_number, then:
-Call `update_invoice` with id and status="paid"
+Call `update_invoice` with id and status="paid" (and `paid_date` if the user gives the payment date)
